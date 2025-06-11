@@ -31,15 +31,28 @@ vue --version
 ```
 若安装成功则会输出@vue/cli 5.0.8
 
-### Compiles and minifies for production
+3.安装依赖项在项目文件中
+在资源管理器中文件地址顶部的地址目录中输入cmd打开控制台（或Win+R打开控制台然后cd项目地址）
 ```
-npm run build
+npm install
 ```
+这样项目文件中就多了一个node_modules的文件夹
 
-### Lints and fixes files
+4.启动项目
 ```
-npm run lint
+npm run serve
 ```
+等待一段时间后会显示【DONE】Complied successfully in xxx ms
+以及App running at:
+Local:http://localhost:8080/
+Network:http://youripaddress:8080/
+这时候项目已经启动成功
+```
+http://localhost:8080/
+```
+将http://localhost:8080/
+复制到浏览器打开即可
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 更多
+[原神启动](https://autopatchcn.yuanshen.com/client_app/download/launcher/20250508182406_qVf7ZaTdA9uIdSJ7/mihoyo/yuanshen_setup_202504252217.exe)
