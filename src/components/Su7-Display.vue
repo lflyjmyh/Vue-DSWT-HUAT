@@ -1,10 +1,12 @@
 ```vue
 <template>
-
   <div>
     <nav class="top-nav">
-      <div class="nav-logo">
-        <img src="/picture/XiaomiEV.jpg" alt="小米汽车LOGO">
+      <div class="nav-logo-container">
+        <div class="nav-logo" @click="navigateToMusic">
+          <img src="/picture/XiaomiEV.jpg" alt="小米汽车LOGO">
+        </div>
+        <button v-if="activeSection === 'music'" class="back-button" @click="navigateToMain">返回</button>
       </div>
       <div class="nav-menu">
         <div class="search-container">
@@ -90,7 +92,7 @@
           <div class="content-block text-block">
             <strong>流畅侧面</strong><br>
             <img src="/picture/su7_3_1.jpg" alt="流畅侧面">
-            遵循 3 倍轮轴比和 2 倍轮高比的设计比例，舒展的流畅腰线与溜背造型，侧面观感流畅自然
+            遵循 3 倍轮轴比和 2 倍轮高比的设计比例，舒展的流畅腰线与条背滑的设计，侧面观感流畅自然
           </div>
         </div>
         <div class="content-block image-block" id="inside-color">
@@ -255,7 +257,7 @@
 
       <section id="music" class="content-section" :class="{ active: activeSection === 'music' }">
         <div class="content-block music-content">
-          <audio id="music-audio" loop ref="audio">
+          <audio id="music-audio" loop ref="audio" controls>
             <source src="/media/Are You OK.mp3" type="audio/mp3">
             <p>您的浏览器不支持音频播放。</p>
           </audio>
@@ -264,10 +266,6 @@
             :class="{ play: !isPlaying, pause: isPlaying }"
             @click="toggleAudio"
           ></div>
-          <audio controls>
-            <source src="/media/Are You OK.mp3" type="audio/mp3">
-            <p>您的浏览器不支持音频播放。</p>
-          </audio>
           <h2>Powered by</h2>
           <img src="/picture/Main.png" alt="图片">
         </div>
@@ -344,6 +342,34 @@ function navigateToSection(sectionId) {
     targetBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   showSearchResults.value = false;
+}
+
+// Navigate to music section and restart audio
+function navigateToMusic() {
+  activeSection.value = 'music';
+  const musicSection = document.getElementById('music');
+  if (musicSection) {
+    musicSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (audio.value) {
+    audio.value.currentTime = 0; // Reset audio to start
+    audio.value.play().catch(err => console.error('Audio play failed:', err));
+    isPlaying.value = true;
+  }
+}
+
+// Navigate back to main section and stop audio
+function navigateToMain() {
+  activeSection.value = 'su7';
+  const mainSection = document.getElementById('su7');
+  if (mainSection) {
+    mainSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (audio.value) {
+    audio.value.pause(); // Stop audio
+    audio.value.currentTime = 0; // Reset to start for next play
+    isPlaying.value = false;
+  }
 }
 
 // Video error handling
@@ -510,10 +536,37 @@ body {
   height: 70px;
 }
 
+.nav-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-logo {
+  cursor: pointer;
+}
+
 .nav-logo img {
   height: 40px;
   max-width: 150px;
   object-fit: contain;
+}
+
+.back-button {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .nav-menu {
@@ -604,7 +657,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   gap: 60px;
-  color:#FFFFFF;
+  color: #FFFFFF;
 }
 
 .content-section {
@@ -663,7 +716,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  background: auto;
+  background: transparent;
   padding: 10px 20px;
   border-radius: 8px;
   font-family: Arial, sans-serif;
@@ -713,7 +766,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 24px;
   font-weight: bold;
-  background: auto;
+  background: transparent;
   padding: 10px 20px;
   border-radius: 8px;
   opacity: 0;
@@ -765,7 +818,7 @@ body {
 
 .carousel-prev:hover,
 .carousel-next:hover {
-  background: auto;
+  background: transparent;
 }
 
 .carousel-prev {
@@ -777,9 +830,9 @@ body {
 }
 
 .text-block {
-  border: 2px solid auto;
+  border: 2px solid transparent;
   padding: 20px;
-  background: auto;
+  background: transparent;
   border-radius: 8px;
   font-family: Arial, sans-serif;
   font-size: 18px;
@@ -897,7 +950,7 @@ body {
 
 .reserve-button,
 .config-button {
-  background: auto;
+  background: transparent;
   color: #FFFFFF;
   font-family: Arial, sans-serif;
   font-size: 24px;
@@ -910,7 +963,7 @@ body {
 
 .reserve-button:hover,
 .config-button:hover {
-  background: auto;
+  background: transparent;
   transform: scale(1.1);
 }
 
@@ -938,7 +991,7 @@ body {
 }
 
 .more-button:hover {
-  background: auto;
+  background: transparent;
   transform: scale(1.1);
 }
 
@@ -1088,5 +1141,16 @@ body {
     right: 10px;
     max-width: 90%;
   }
+
+  .nav-logo-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .back-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
 </style>
+```
