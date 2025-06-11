@@ -14,7 +14,7 @@ Pycharm Pro Edition 2025.1.1.1 + VUE 3
 
 ### 使用前准备
 1.检查是否安装过Node.js
-Node.js官网https://nodejs.org/zh-cn
+[Node.js官网](https://nodejs.org/zh-cn)
 ```
 node -v
 npm -v
