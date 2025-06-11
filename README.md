@@ -1,14 +1,35 @@
-# su7-display
+# 简介
+```
+本次实验旨在通过分组实践，设计一个智能汽车相关的网站，在HTML、CSS和JavaScript设计页面的基础上使用Web框架改写该网站。
+选择并安装React、Vue、Angular、Bootstrap等前端框架中的任意一种 
+- 改写后的网站具有完整的搜索栏，并且可以实现搜索
+- 改写后的网站需要具有响应式布局并可以正常运行
+- 阐述如何选择合适的Web前端框架，并利用该框架改写原有的智能汽车相关的网站
+```
 
-## Project setup
+## 编译环境
 ```
-npm install
+Pycharm Pro Edition 2025.1.1.1 + VUE 3
 ```
 
-### Compiles and hot-reloads for development
+### 使用前准备
+1.检查是否安装过Node.js
+Node.js官网https://nodejs.org/zh-cn
 ```
-npm run serve
+node -v
+npm -v
 ```
+如果出现v22.xx.x和10.x.x则说明Node安装成功；如果出现'xxxx'不是内部或外部命令，也不是可运行的程序或批处理文件,则重新进行安装。
+
+2.全局安装Vue CLI
+```
+npm install -g @vue/cli
+```
+验证安装
+```
+vue --version
+```
+若安装成功则会输出@vue/cli 5.0.8
 
 ### Compiles and minifies for production
 ```
