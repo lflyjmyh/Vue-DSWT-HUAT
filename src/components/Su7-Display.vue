@@ -502,7 +502,7 @@ body {
   align-items: center;
   padding: 15px 50px;
   background-color: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px auto;
   position: fixed;
   width: 100%;
   top: 0;
