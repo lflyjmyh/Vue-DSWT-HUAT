@@ -12,10 +12,24 @@
 Pycharm Pro Edition 2025.1.1.1 + VUE 3
 ```
 
-### 使用步骤
+### 使用前准备
+1.检查是否安装过Node.js
+Node.js官网https://nodejs.org/zh-cn
 ```
--
+node -v
+npm -v
 ```
+如果出现v22.xx.x和10.x.x则说明Node安装成功；如果出现'xxxx'不是内部或外部命令，也不是可运行的程序或批处理文件,则重新进行安装。
+
+2.全局安装Vue CLI
+```
+npm install -g @vue/cli
+```
+验证安装
+```
+vue --version
+```
+若安装成功则会输出@vue/cli 5.0.8
 
 ### Compiles and minifies for production
 ```
